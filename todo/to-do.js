@@ -65,6 +65,7 @@ const separadores=(cols=80,separadorCab="=",separadorLin='-') => {
 
 const listar=()=> {
     let sep=separadores();
+    console.clear();
     console.log(sep.spCab.green);
     console.log("Listado de tareas".green);
     console.log(sep.spLin.green);
@@ -83,12 +84,13 @@ const listar=()=> {
 
 const mostrar=(indice=listaTareas.length-1)=> {
     let sep=separadores();
+    console.clear();
     if(indice>=0 && indice<listaTareas.length) {
         let nt=listaTareas[indice];
         console.log(sep.spCab.green);
-        console.log(`| ID: ${nt.id}\t|Fecha: ${moment(nt.hora).format("DD/MM/YY")}\t|Hora: ${moment(nt.hora).format("HH:mm")}\t`.yellow);
+        console.log(`| ID: ${nt.id}\t| Fecha: ${moment(nt.hora).format("DD/MM/YY")}\t| Hora: ${moment(nt.hora).format("HH:mm")}\t`.yellow);
         console.log(sep.spLin.green);
-        console.log(`| Completada: ${nt.completado?"Si":"No"}\t`.yellow);
+        console.log(`| Completada: ${nt.terminado?"Si":"No"}\t`.yellow+(nt.terminado?`| Terminado en: ${moment(nt.completado).format("DD/MM/YY HH:mm")}`.red:``));
         console.log(sep.spLin.green);
         console.log(`Descripcion:`.green);
         console.log(nt.descripcion.yellow);

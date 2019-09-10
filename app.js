@@ -31,9 +31,10 @@ todo.leerDB().then((data)=> {
     todo.guardarDB().then((correcto)=> {
         console.log("Datos guardados".green);
     }).catch(err=> {
-        console.log("Error al guardar los datos, causa: "+err.red)
+        console.clear();
+        console.log("Error al guardar los datos, causa: "+err.red)        
     });
-}).catch( 
+}).catch(     
     err=>console.log('Error al leer los datos, '+err)
 )
 
