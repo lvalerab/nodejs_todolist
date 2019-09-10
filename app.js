@@ -3,7 +3,6 @@ const color=require('colors');
 const argv =require('./config/yargs').argv; //Configuracion de lectura de linea de comandos
 const todo=require('./todo/to-do');
 
-console.log(argv);
 
 let comando=argv._[0];
 
@@ -11,7 +10,7 @@ todo.leerDB().then((data)=> {
     switch(comando) {
         case "crear":
             let tarea=todo.crear(argv.descripcion);
-            mostrar(tarea.length-1);
+            todo.mostrar();
             break;
         case "listar":
             todo.listar();
@@ -19,8 +18,11 @@ todo.leerDB().then((data)=> {
         case "mostrar":
             todo.mostrar(argv.elemento);
             break;
+        case "eliminar":
+            todo.eliminar(argv.elemento);
+            break;
         case "actualizar":
-                console.log("actualizar");
+            todo.actualizar(argv.elemento,argv.descripcion,argv.completado);
             break;
         default:
                 console.log("comando no reconocido");

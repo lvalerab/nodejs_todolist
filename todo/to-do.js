@@ -81,12 +81,12 @@ const listar=()=> {
     }
 }
 
-const mostrar=(indice)=> {
+const mostrar=(indice=listaTareas.length-1)=> {
     let sep=separadores();
     if(indice>=0 && indice<listaTareas.length) {
-        let nt=listaTareas[i];
+        let nt=listaTareas[indice];
         console.log(sep.spCab.green);
-        console.log(`| ID: ${nt.id}\t|Fecha: ${moment(listaTareas[i].hora).format("DD/MM/YY")}\t|Hora: ${moment(listaTareas[i].hora).format("HH:mm")}\t`.yellow);
+        console.log(`| ID: ${nt.id}\t|Fecha: ${moment(nt.hora).format("DD/MM/YY")}\t|Hora: ${moment(nt.hora).format("HH:mm")}\t`.yellow);
         console.log(sep.spLin.green);
         console.log(`| Completada: ${nt.completado?"Si":"No"}\t`.yellow);
         console.log(sep.spLin.green);
@@ -100,11 +100,44 @@ const mostrar=(indice)=> {
     }
 }
 
+const actualizar=(indice,descripcion,terminado) => {
+    let sep=separadores();
+    if(indice>=0 && indice<listaTareas.length) {
+        listaTareas[indice].descripcion=descripcion;
+        listaTareas[indice].terminado=terminado;
+        listaTareas[indice].completado=(terminado?moment():null);
+        mostrar(indice);
+    } else {
+        console.log(sep.spCab.red);
+        console.log(`| Elemento ${indice} no se encuentra dentro de los límites del array`.green);
+        console.log(sep.spCab.red);
+    }
+}
+
+const eliminar=(indice)=> {
+    let sep=separadores();
+    if(indice>=0 && indice<listaTareas.length) {
+        for(let i=indice+1;i<listaTareas.length;i++) {
+            listaTareas[i].id=i-1;
+        }
+        listaTareas.splice(indice,1);
+        console.log(sep.spCab.green);
+        console.log(`| Elemento ${indice}, eliminado con éxito`.green);
+        console.log(sep.spCab.green);
+    } else {
+        console.log(sep.spCab.red);
+        console.log(`| Elemento ${indice} no se encuentra dentro de los límites del array`.green);
+        console.log(sep.spCab.red);
+    }
+}
+
 
 module.exports={
     crear,
     listar,
     mostrar,
+    actualizar,
+    eliminar,
     leerDB,
     guardarDB
 }
