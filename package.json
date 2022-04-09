@@ -22,7 +22,7 @@
   "homepage": "https://github.com/lvalerab/nodejs_todolist#readme",
   "dependencies": {
     "colors": "^1.3.3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "yargs": "^14.0.0"
   }
 }
